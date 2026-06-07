@@ -8,4 +8,3 @@ if (a != b):
 
 else:
     print("We love Tobird")
-    print("Fuck me in my ass\n -GinvyX")
