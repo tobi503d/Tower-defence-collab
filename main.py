@@ -1,4 +1,8 @@
 a = "fuck"
 b = "you"
 
-print(f"{a} {b} Tobird")
+if (a == b):
+    print(f"{a} {b} Tobird")
+
+else:
+    print("We love Tobird")
