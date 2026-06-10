@@ -1,7 +1,8 @@
-#Game name "defencin"
-
 import pygame
+import sys
 import random
+from Button import buttonStyle, button
+import Enemy
 
 pygame.init()
 
@@ -38,45 +39,32 @@ screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Defencing")
 pygame.display.set_icon(icon)
 
+buttonStyle = buttonStyle((0, 0, 255), (0, 255, 0), (0, 255, 255))
+
+def startGame():
+    print("Started game")
+
+def setup():
+    global startButton
+    startButton = button(pygame.Rect(200, 100, 200, 100), "Start", buttonStyle, onClick=startGame)
+
+
+def main():
+    setup()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill((255, 0, 0))
+        startButton.update(screen)
+
+
+        pygame.display.flip() #draws everything
+    pygame.quit()
+    sys.exit()
 
 
 
-
-
-
-
-
-#      --- blueprint for enemies ---
-class enemy:
-    def __init__(self, ID_, HP_, speed_, defense_):
-        self.ID = ID_
-        self.HP = HP_
-        self.speed = speed_
-        self.defence = defense_
-    
-    def __repr__(self):
-        return f"Enemy(ID={self.ID}, HP={self.HP}, speed={self.speed}, defence={self.defence})"
-
-
-def enemyObjectMaker(enemyType):
-    
-    try:
-        tempID = enemyList[-1].ID +1
-    except:
-        tempID = 1
-
-    tempObjekt = enemy(tempID, enemyStats[enemyType]["hp"], enemyStats[enemyType]["speed"], enemyStats[enemyType]["defence"])
-    enemyList.append(tempObjekt)
-
-
-
-
-
-
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-pygame.quit()
+main()
